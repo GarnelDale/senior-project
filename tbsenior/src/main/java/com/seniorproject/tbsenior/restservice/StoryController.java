@@ -37,49 +37,43 @@ public class StoryController {
         return new ResponseEntity<>(new Story("No story found"), HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @PutMapping()
     public ResponseEntity newStory() {
         try {
             // Get the file
-            File f = new File("classpath:data/story.txt");
+            File file = new File("data/story.txt");
 
             // Create new file
             // if it does not exist
-            if (f.createNewFile())
-                System.out.println("File created");
+            if (file.createNewFile())
+                return new ResponseEntity(HttpStatus.CREATED);
             else
-                System.out.println("File already exists");
+                return new ResponseEntity(HttpStatus.CONFLICT);
         } catch (Exception e) {
-            System.err.println(e);
+            System.out.println(e);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(new Story("No story found"), HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @PostMapping()
     public void update() {
 
     }
 
+    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @DeleteMapping()
-    public ResponseEntity<Story> remove() {
-//        Path path = Path.of("c:/temp/two.txt");
-//        boolean success = Files.deleteIfExists(path);
-        // create object of Path
-//        Path path
-//                = Paths.get("D:\\Work\\Test\\file1.txt");
-//
-//        // delete File
-//        try {
-//
-//            Files.delete(path);
-//        }
-//        catch (IOException e) {
-//
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-        return new ResponseEntity<>(new Story("No story found"), HttpStatus.NO_CONTENT);
-
+    public ResponseEntity remove() {
+        try {
+            File file = ResourceUtils.getFile("classpath:data/story.txt");
+            if(file.delete())
+                return new ResponseEntity(HttpStatus.NO_CONTENT);
+            else
+                return new ResponseEntity(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
     }
 
 }
