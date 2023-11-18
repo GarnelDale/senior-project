@@ -1,7 +1,9 @@
 $(document).ready(function() {
     $.ajax({
-        url: "localhost:5000/greeting"
+        type: "GET",
+        url: "http://localhost:5000/story",
+        dataType: "JSON"
     }).then(function(data) {
-       $('#lore').innerText = data.content;
+       document.querySelector('#lore').innerText = data.story;
     });
 });
