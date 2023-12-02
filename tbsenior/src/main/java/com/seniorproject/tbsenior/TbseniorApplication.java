@@ -9,5 +9,4 @@ public class TbseniorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TbseniorApplication.class, args);
 	}
-
 }

@@ -1,5 +1,3 @@
-
-
 body {
     background-color: paleturquoise;
     margin: 20px;
@@ -31,4 +29,8 @@ body {
 #put {
     grid-column: 2/3;
     grid-row: 2/3;
+}
+
+#lore {
+    grid-column: 1/4;
 }
