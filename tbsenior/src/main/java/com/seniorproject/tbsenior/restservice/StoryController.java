@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500/")
 @RequestMapping("/story")
 public class StoryController {
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @GetMapping()
     public ResponseEntity<Story> getStory() {
         try {
@@ -38,7 +38,6 @@ public class StoryController {
         return new ResponseEntity<>(new Story("No story found"), HttpStatus.NO_CONTENT);
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @PutMapping()
     public ResponseEntity newStory() {
         try {
@@ -54,12 +53,10 @@ public class StoryController {
             else
                 return new ResponseEntity(HttpStatus.CONFLICT);
         } catch (Exception e) {
-            System.out.println(e);
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @PostMapping()
     public ResponseEntity update(@RequestBody String poem) {
         try {
@@ -84,7 +81,6 @@ public class StoryController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @DeleteMapping()
     public ResponseEntity remove() {
         try {

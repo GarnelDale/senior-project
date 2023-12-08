@@ -3,6 +3,10 @@ body {
     margin: 20px;
 }
 
+p {
+    text-align: center;
+}
+
 #story {
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr 1fr;
@@ -33,4 +37,10 @@ body {
 
 #lore {
     grid-column: 1/4;
+}
+
+#scroll {
+    background: black;
+    color: rgba(255, 255, 0, 0.818);
+    padding: 25px;
 }

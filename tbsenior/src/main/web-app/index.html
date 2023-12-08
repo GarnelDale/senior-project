@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="/styles/base.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="/scripts/get.js" defer></script>
+    <script src="/scripts/story.js" defer></script>
+    <script src="/scripts/picture.js" defer></script>
+    <script src="/scripts/external.js" defer></script>
 </head>
 <body>
     <h1>API UI</h1>
@@ -20,9 +22,11 @@
         <p id="lore"></p>
     </section>
     <section id="starWars">
-        <img>
-        <button>Get Random Star Wars Fact</button>
-        <p></p>
+        <button id="galaxy">Get Random Star Wars Opening Scroll</button>
+        <p id="scroll"></p>
+        <input name="starship" type="text" id="shipSearch" placeholder="Enter starship name here">
+        <button id="ship">Get ship details</button>
+        <p id="details"></p>
     </section>
 </body>
 </html>
