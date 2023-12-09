@@ -6,9 +6,11 @@ import org.json.JSONObject;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestClient;
 
 @RestController
 @CrossOrigin(origins = "http://127.0.0.1:5500/")
@@ -19,6 +21,8 @@ public class StarWarsController {
     @GetMapping()
     public ResponseEntity<String> crawls() {
         try {
+            // Room for improvement: make the random number of the call be here instead of on the ui to
+            // reduce call time and size
             String crawlURL = baseURL + "films/";
             RestTemplate restTemplate = new RestTemplate();
             URL url = new URL(crawlURL);
@@ -37,14 +41,12 @@ public class StarWarsController {
     @GetMapping(path = "/{ship}")
     public ResponseEntity<String> starships(@PathVariable("ship") String ship) {
         try {
-            RestTemplate restTemplate = new RestTemplate();
-            String search = baseURL + "/starships?search=" + ship;
-            URL url = new URL(search);
-            HttpURLConnection http = (HttpURLConnection)url.openConnection();
-            http.setRequestProperty("Accept", "application/json");
-
-            ResponseEntity<String> response = restTemplate.getForEntity(search, String.class);
-            System.out.println(response);
+            RestClient restClient = RestClient.create(baseURL);
+            ResponseEntity<String> response = restClient.get()
+                    .uri("starships?search={ship}", ship)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(String.class);
             return response;
         } catch (Exception e) {
             System.out.println(e);

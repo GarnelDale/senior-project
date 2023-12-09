@@ -1,5 +1,5 @@
 package com.seniorproject.tbsenior.restservice;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 
-public record Picture(Image picture) {}
+public record Picture(BufferedImage picture) {}

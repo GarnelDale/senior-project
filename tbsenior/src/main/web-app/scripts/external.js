@@ -11,19 +11,24 @@ getData.addEventListener("click", () => {
       type: "GET",
       url: "http://localhost:5000/third-party",
     }).then((data) => {
+      scroll.style.display = "block";
       scroll.innerText = data.results[randomNumber(0,5)].opening_crawl;
     });
   });
 
 const starships = document.getElementById("shipSearch");
 const details = document.getElementById("details");
+const ship = document.getElementById("ship");
 
 ship.addEventListener("click", ()=> {
-    console.log(starships.value);
     $.ajax({
         type: "GET",
-        url: "http://localhost:5000/third-party/{ship}",
+        url: "http://localhost:5000/third-party/",
         data: starships.value,
+        "headers": {
+          "accept": "application/json",
+          "Access-Control-Allow-Origin":"*"
+      }
     }).then((data) => {
         details.innerText = data;
     })
