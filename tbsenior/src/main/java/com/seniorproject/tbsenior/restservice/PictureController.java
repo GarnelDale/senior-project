@@ -28,23 +28,28 @@ public class PictureController {
     //From https://www.baeldung.com/spring-controller-return-image-file
     @GetMapping(produces = MediaType.IMAGE_GIF_VALUE)
     public @ResponseBody byte[] getImage() throws IOException {
-        InputStream in = getClass().getClassLoader()
-                .getResourceAsStream("data/" + filename);
         try {
+            InputStream in = getClass().getClassLoader()
+                    .getResourceAsStream("data/" + filename);
             byte[] image = IOUtils.toByteArray(in);
             in.close();
             return image;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+
     }
 
     @PostMapping()
     public ResponseEntity uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
+        try {
             filename = file.getOriginalFilename();
             Path fileNameAndPath = Paths.get(directory, filename);
             Files.write(fileNameAndPath, file.getBytes());
             return new ResponseEntity(HttpStatus.CREATED);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+        }
     }
 
     @DeleteMapping()

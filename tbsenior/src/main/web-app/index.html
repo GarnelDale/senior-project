@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Senior Project</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="/styles/base.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link rel="stylesheet" href="/styles/base.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/scripts/story.js" defer></script>
     <script src="/scripts/picture.js" defer></script>
     <script src="/scripts/external.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>API UI</h1>
     <section id="story">
-        <textarea id="write" name="story"></textarea>
-        <button id="get">Get Story</button>
-        <button id="post">Update Story</button>
-        <button id="delete">Delete Story</button>
-        <button id="put">New Story</button>
-        <p id="lore"></p>
+      <textarea id="write" name="story"></textarea>
+      <button id="get">Get Story</button>
+      <button id="post">Update Story</button>
+      <button id="delete">Delete Story</button>
+      <button id="put">New Story</button>
+      <p id="lore"></p>
     </section>
     <section id="starWars">
-        <button id="galaxy">Get Random Star Wars Opening Scroll</button>
-        <p id="scroll"></p>
-        <input name="starship" type="text" id="shipSearch" placeholder="Enter starship name here">
-        <button id="ship">Get ship details</button>
-        <p id="details"></p>
+      <button id="galaxy">Get Random Star Wars Opening Scroll</button>
+      <p id="scroll"></p>
+      <input
+        name="starship"
+        type="text"
+        id="shipSearch"
+        placeholder="Enter starship name here"
+      />
+      <button id="ship">Get ship details</button>
+      <p id="details"></p>
     </section>
     <section id="picture">
-        <button id="getBounce">Get GIF</button>
-        <img id="bounce">
-        <button id="upload">Upload GIF</button>
-        <button id="deleteBounce">Delete GIF</button>
+      <button id="getBounce">Get GIF</button>
+      <img id="bounce" />
+      <form action="" id="uploadForm">
+        <input type="file" name="image" id="uploadGIF" accept="image/gif" title="Choose GIF" />
+        <button type="submit" id="upload">Upload GIF</button>
+      </form>
+      <button id="deleteBounce">Delete GIF</button>
     </section>
-</body>
+  </body>
 </html>
