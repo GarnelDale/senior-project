@@ -41,13 +41,17 @@ public class PictureController {
     }
 
     @PostMapping()
-    public ResponseEntity uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
+    public ResponseEntity uploadImage(@RequestParam("myfile") MultipartFile file) throws IOException {
         try {
-            filename = file.getOriginalFilename();
-            Path fileNameAndPath = Paths.get(directory, filename);
-            Files.write(fileNameAndPath, file.getBytes());
+            filename = file.getOriginalFilename().substring(0);
+            String fileNameAndPath = directory + filename;
+            File newPath = new File(fileNameAndPath);
+            if (!newPath.exists())
+                newPath.createNewFile();
+            Files.write(newPath.toPath(), file.getBytes());
             return new ResponseEntity(HttpStatus.CREATED);
         } catch (Exception e) {
+            System.out.println(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
     }
@@ -62,6 +66,7 @@ public class PictureController {
             else
                 return new ResponseEntity(HttpStatus.ACCEPTED);
         } catch (Exception e) {
+            System.out.println(e);
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }

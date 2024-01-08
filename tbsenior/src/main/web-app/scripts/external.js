@@ -23,13 +23,9 @@ const ship = document.getElementById("ship");
 ship.addEventListener("click", ()=> {
     $.ajax({
         type: "GET",
-        url: "http://localhost:5000/third-party/",
-        data: starships.value,
-        "headers": {
-          "accept": "application/json",
-          "Access-Control-Allow-Origin":"*"
-      }
+        url: `http://localhost:5000/third-party/${starships.value}`,
     }).then((data) => {
         details.innerText = data;
+        // ADD THE DATA TO THE SCREEN
     })
 })

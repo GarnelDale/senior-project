@@ -61,14 +61,14 @@ public class StoryController {
     public ResponseEntity update(@RequestBody String poem) {
         try {
             File file = ResourceUtils.getFile("classpath:data/story.txt");
-            JSONObject reqObj = new JSONObject(poem);
-            String story = reqObj.getString("story");
             //File is found
             if (file.exists()) {
                 // Update the file
-                if (story.length() == 0){
+                if (poem.length() == 0){
                     return new ResponseEntity(HttpStatus.CREATED);
                 } else {
+                    JSONObject reqObj = new JSONObject(poem);
+                    String story = reqObj.getString("story");
                     Files.write(file.toPath(), ("\n" + story).getBytes(), StandardOpenOption.APPEND);
                     return new ResponseEntity(HttpStatus.CREATED);
                 }

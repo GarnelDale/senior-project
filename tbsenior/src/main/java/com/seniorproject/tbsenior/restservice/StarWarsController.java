@@ -38,6 +38,7 @@ public class StarWarsController {
         }
     }
 
+    @CrossOrigin
     @GetMapping(path = "/{ship}")
     public ResponseEntity<String> starships(@PathVariable("ship") String ship) {
         try {

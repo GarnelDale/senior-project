@@ -7,13 +7,16 @@ getBounce.addEventListener('click', () => {
 
 const upload = document.getElementById("uploadForm");
 const uploadGIF = document.getElementById("uploadGIF");
-upload.addEventListener('submit', (event) => {
-  const formData = new FormData(uploadGIF);
+addEventListener('submit', (event) => {
+  console.log(upload);
+  const formData = new FormData(upload);
+  console.log(...formData);
   $.ajax({
     type: "POST",
     url: "http://localhost:5000/picture",
-    contentType: 'multipart/form-data',
+    contentType: false,
     data: formData,
+    processData: false,
   })
   event.preventDefault();
 });
